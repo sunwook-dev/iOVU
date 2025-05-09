@@ -116,12 +116,12 @@ const Footer = () => {
               sx={{
                 display: "flex",
                 justifyContent: "center",
-                columnGap: 2,
+                columnGap: 1,
               }}
             >
-              <IoLogoGithub fontSize="large" />
-              <IoLogoYoutube fontSize="large" />
-              <IoLogoInstagram fontSize="large" />
+              <IoLogoGithub fontSize="20px" />
+              <IoLogoYoutube fontSize="20px" />
+              <IoLogoInstagram fontSize="20px" />
               {/* <YouTubeIcon fontSize="medium" />
             <InstagramIcon fontSize="medium" /> */}
             </Box>

@@ -36,7 +36,7 @@ const BrandTrackingChart = () => {
         borderColor: "#e011c2",
         backgroundColor: "#e011c2",
         fill: false,
-        tension: 0.3,
+        tension: 0,
         pointRadius: 5,
       },
       {
@@ -45,7 +45,7 @@ const BrandTrackingChart = () => {
         borderColor: "#3399ff",
         backgroundColor: "#3399ff",
         fill: false,
-        tension: 0.3,
+        tension: 0,
         pointRadius: 5,
       },
       {
@@ -54,7 +54,7 @@ const BrandTrackingChart = () => {
         borderColor: "#cc4b2c",
         backgroundColor: "#cc4b2c",
         fill: false,
-        tension: 0.3,
+        tension: 0,
         pointRadius: 5,
       },
       {
@@ -63,7 +63,7 @@ const BrandTrackingChart = () => {
         borderColor: "#70c9cc",
         backgroundColor: "#70c9cc",
         fill: false,
-        tension: 0.3,
+        tension: 0,
         pointRadius: 5,
       },
       {
@@ -72,7 +72,7 @@ const BrandTrackingChart = () => {
         borderColor: "#f39237",
         backgroundColor: "#f39237",
         fill: false,
-        tension: 0.3,
+        tension: 0,
         pointRadius: 5,
       },
     ],
@@ -93,7 +93,7 @@ const BrandTrackingChart = () => {
     scales: {
       y: {
         reverse: true,
-        min: 1,
+        min: 0,
         max: 10,
         ticks: {
           stepSize: 1,
@@ -103,18 +103,21 @@ const BrandTrackingChart = () => {
           text: "Rank",
         },
       },
-      x: {
-        title: {
-          display: true,
-          text: "Date",
-        },
-      },
     },
   };
 
   return (
-    <div style={{ height: "500px", width: "100%", padding: "20px" }}>
-      <h2>Weekly Brand Ranking</h2>
+    <div style={{ height: "100%", width: "100%" }}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "left",
+          marginLeft: "30px",
+        }}
+      >
+        <h2>Weekly Brand Ranking</h2>
+      </div>
       <Line data={data} options={options} />
     </div>
   );

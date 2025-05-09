@@ -3,7 +3,7 @@ const BrandTracking = () => {
   return (
     <div
       style={{
-        backgroundColor: "#d9d9d9", // 연한 회색 배경
+        backgroundColor: "#f0f0f0",
         borderRadius: "10px",
         padding: "16px",
         width: "100%",

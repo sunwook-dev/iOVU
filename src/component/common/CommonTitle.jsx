@@ -8,7 +8,7 @@ const CommonTitle = ({ children, sx, ...others }) => {
         sx={{
           textAlign: "flex-start",
           py: 2,
-          px: 3,
+          px: 1,
           fontWeight: 600,
           fontSize: 24,
           ...sx,

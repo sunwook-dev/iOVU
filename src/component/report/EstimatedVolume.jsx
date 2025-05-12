@@ -8,7 +8,7 @@ const EstimatedVolume = () => {
         p: 2,
         m: 0,
         minWidth: "468px",
-        minHeight: "100px",
+        minHeight: "200px",
         bgcolor: "#f5f5f5",
       }}
     >

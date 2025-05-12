@@ -1,4 +1,11 @@
-import { Container, Box } from "@mui/material";
+import {
+  Container,
+  Box,
+  Select,
+  MenuItem,
+  InputLabel,
+  FormControl,
+} from "@mui/material";
 import EstimatedVolume from "../component/report/EstimatedVolume";
 import Snapshot from "../component/report/Snapshot";
 import BrandRanking from "../component/report/BrandRanking";
@@ -9,8 +16,11 @@ import BrandTracking from "../component/report/BrandTracking";
 import DomainTr from "../component/report/DomainTr";
 import Analysis from "../component/report/Analysis";
 import CommonTitle from "../component/common/CommonTitle";
+import CommonButton from "../component/common/CommonButton";
+import { useState } from "react";
 
 const Report = () => {
+  const [date, setDate] = useState("");
   return (
     <Container
       disableGutters
@@ -18,6 +28,60 @@ const Report = () => {
       sx={{ width: "1000px", height: "100%" }}
     >
       <CommonTitle>${}보고서</CommonTitle>
+      <Box
+        sx={{
+          mb: 4,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          rowGap: 4,
+        }}
+      >
+        <Box
+          sx={{
+            textAlign: "center",
+            display: "flex",
+            alignItems: "center",
+          }}
+        >
+          날짜 :
+          <FormControl>
+            <InputLabel
+              id="demo-simple-select-label"
+              sx={{
+                px: 2,
+              }}
+            >
+              선택한 날짜
+            </InputLabel>
+            <Select
+              label="선택한 날짜"
+              id="demo-simple-select"
+              value=""
+              sx={{
+                mx: 2,
+                minWidth: 140,
+              }}
+            >
+              <MenuItem value={6}>05-06</MenuItem>
+              <MenuItem value={13}>05-13</MenuItem>
+              <MenuItem value={20}>05-20</MenuItem>
+            </Select>
+          </FormControl>
+        </Box>
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            columnGap: 4,
+          }}
+        >
+          <CommonButton color="third">ChatGPT</CommonButton>
+          <CommonButton>Gemini</CommonButton>
+        </Box>
+      </Box>
 
       {/* 2열 그리드 레이아웃 컨테이너 */}
       <Box sx={{ width: "1000px" }}>

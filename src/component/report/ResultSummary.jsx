@@ -4,7 +4,7 @@ const ResultSummary = () => {
   return (
     <Paper
       elevation={1}
-      sx={{ p: 2, minWidth: "468px", minHeight: "220px", bgcolor: "#f5f5f5" }}
+      sx={{ p: 2, minWidth: "468px", minHeight: "400px", bgcolor: "#f5f5f5" }}
     >
       <Typography variant="subtitle2" color="secondary">
         Search Result for ChatGPT(최대 참고)

@@ -7,7 +7,7 @@ const Snapshot = () => {
       sx={{
         p: 2,
         minWidth: "468px",
-        height: "200px",
+        height: "300px",
         bgcolor: "#f5f5f5",
       }}
     >

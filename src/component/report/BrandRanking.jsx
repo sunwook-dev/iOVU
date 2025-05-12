@@ -4,7 +4,7 @@ const BrandRanking = () => {
   return (
     <Paper
       elevation={1}
-      sx={{ p: 2, minWidth: "468px", height: "180px", bgcolor: "#f5f5f5" }}
+      sx={{ p: 2, minWidth: "468px", height: "320px", bgcolor: "#f5f5f5" }}
     >
       <Typography variant="subtitle2" color="secondary">
         Brand Ranking

@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 import { Paper, Box, Typography } from "@mui/material";
 import Chart from "react-apexcharts";
+import CommonSubtitle from "../common/CommonSubtitle";
 
 const MentionTracking = () => {
   const [series, setSeries] = useState([]);
   const [dates, setDates] = useState([]);
 
   useEffect(() => {
-    // 👉 더미 데이터
+    // 더미 데이터
     const dummyDates = ["05-06", "05-07", "05-08", "05-09", "05-10"];
     const dummyData = {
       스타벅스: [12, 8, 15, 6, 10],
@@ -61,9 +62,7 @@ const MentionTracking = () => {
       elevation={1}
       sx={{ p: 2, minWidth: "468px", height: "280px", bgcolor: "#f5f5f5" }}
     >
-      <Typography variant="subtitle2" color="secondary">
-        주간 인터넷 언급량 트렌드
-      </Typography>
+      <CommonSubtitle>Weekly Mention Tracking</CommonSubtitle>
       <Box sx={{ height: "200px", mt: 1 }}>
         {series.length > 0 ? (
           <Chart

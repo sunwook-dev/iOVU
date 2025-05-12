@@ -7,7 +7,7 @@ import ChartTestPage from "../pages/ChartTestPage"; // 새로 만든 테스트 �
 import LandingPage from "../pages/LandingPage";
 import SearchPage from "../pages/SearchPage";
 import Report from "../pages/Report";
-import Reports from "../pages/reports/Reports";
+import ReportsLists from "../pages/lists/ReportsLists";
 import DashBoard from "../pages/dashBoard/DashBoard";
 
 const Router = () => {
@@ -20,7 +20,7 @@ const Router = () => {
       <Route path="/chart-test" element={<ChartTestPage />} />
       <Route path="/landing" element={<LandingPage />} />
       <Route path="/search" element={<SearchPage />} />
-      <Route path="/reports" element={<Reports />} />
+      <Route path="/reports" element={<ReportsLists />} />
       <Route path="/reports/1/dashboard" element={<DashBoard />} />
       <Route path="/report" element={<Report />} />
     </Routes>

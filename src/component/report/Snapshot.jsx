@@ -1,5 +1,5 @@
 import { Paper, Box, Typography } from "@mui/material";
-
+import CommonSubtitle from "../common/CommonSubtitle";
 const Snapshot = () => {
   return (
     <Paper
@@ -7,13 +7,11 @@ const Snapshot = () => {
       sx={{
         p: 2,
         minWidth: "468px",
-        height: "300px",
+        height: "500px",
         bgcolor: "#f5f5f5",
       }}
     >
-      <Typography variant="subtitle2" color="secondary">
-        Snapshot
-      </Typography>
+      <CommonSubtitle>Snapshot</CommonSubtitle>
       <Box></Box>
     </Paper>
   );

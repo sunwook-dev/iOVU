@@ -1,4 +1,5 @@
 import { Paper, Box, Typography } from "@mui/material";
+import CommonSubtitle from "../common/CommonSubtitle";
 
 const EstimatedVolume = () => {
   return (
@@ -8,14 +9,20 @@ const EstimatedVolume = () => {
         p: 2,
         m: 0,
         minWidth: "468px",
-        minHeight: "200px",
+        minHeight: "160px",
         bgcolor: "#f5f5f5",
+        display: "flex",
+        flexDirection: "column",
       }}
     >
-      <Typography variant="subtitle2" color="secondary">
-        Estimated Intent Volume
-      </Typography>
-      <Box sx={{ display: "flex", alignItems: "center", mt: 1 }}>
+      <CommonSubtitle>Estimated Intent Volume</CommonSubtitle>
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          mt: 2,
+        }}
+      >
         <Typography variant="h5" fontWeight="bold">
           134 %
         </Typography>

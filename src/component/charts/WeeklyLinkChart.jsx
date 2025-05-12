@@ -200,17 +200,17 @@ const WeeklyLinkChart = () => {
       legend: {
         position: "top",
         labels: {
-          padding: 20,
+          // padding: 20,
           font: { size: 12 },
         },
       },
-      title: {
-        // Chart.js 자체 제목 기능
-        display: true, // 차트 내부에 제목 표시 여부
-        text: "주간 링크 분류별 트래킹", // 차트 제목
-        font: { size: 16, weight: "bold" },
-        padding: { top: 10, bottom: 20 },
-      },
+      // title: {
+      //   // Chart.js 자체 제목 기능
+      //   display: true, // 차트 내부에 제목 표시 여부
+      //   text: "주간 링크 분류별 트래킹", // 차트 제목
+      //   font: { size: 16, weight: "bold" },
+      //   padding: { top: 10, bottom: 20 },
+      // },
       tooltip: {
         mode: "index",
         intersect: false,
@@ -232,7 +232,7 @@ const WeeklyLinkChart = () => {
           display: true,
           text: "주차",
           font: { size: 14, weight: "bold" },
-          padding: { top: 10, bottom: 0 },
+          // padding: { top: 10, bottom: 0 },
         },
         ticks: { font: { size: 12 } },
       },
@@ -291,14 +291,14 @@ const WeeklyLinkChart = () => {
   }
 
   return (
-    <Container sx={{ py: 3 }}>
+    <Container sx={{ py: 2 }}>
       <Box
         sx={{
           p: { xs: 1, sm: 2, md: 3 },
-          border: "1px solid #e0e0e0",
+          // border: "1px solid #e0e0e0",
           borderRadius: "8px",
-          backgroundColor: "#ffffff",
-          boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
+          // backgroundColor: "#ffffff",
+          // boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
         }}
       >
         {/* 차트 제목은 Chart.js options에서 표시하므로 외부 Typography는 제거하거나 다른 용도로 사용 */}
@@ -307,7 +307,7 @@ const WeeklyLinkChart = () => {
           주간 링크 분석 트래킹
         </Typography>
         */}
-        <Box sx={{ height: { xs: "300px", sm: "400px", md: "450px" } }}>
+        <Box sx={{ height: { xs: "280px", sm: "320px", md: "380px" } }}>
           <Line options={options} data={chartData} />
         </Box>
       </Box>

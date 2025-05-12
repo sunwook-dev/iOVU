@@ -9,6 +9,7 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
+import CommonTitle from "../common/CommonTitle";
 
 ChartJS.register(
   LineElement,
@@ -25,9 +26,9 @@ const BrandTrackingChart = () => {
     labels: [
       "2025-04-01",
       "2025-04-08",
-      "2025-04-15",
-      "2025-04-22",
-      "2025-04-30",
+      // "2025-04-15",
+      // "2025-04-22",
+      // "2025-04-30",
     ],
     datasets: [
       {
@@ -107,18 +108,30 @@ const BrandTrackingChart = () => {
   };
 
   return (
-    <div style={{ height: "100%", width: "100%" }}>
-      <div
+    <div
+      style={{
+        height: "100%",
+        width: "100%",
+        marginTop: "16px",
+      }}
+    >
+      {/* <div
         style={{
           display: "flex",
-          justifyContent: "space-between",
+          // justifyContent: "space-between",
           alignItems: "left",
           marginLeft: "30px",
         }}
+      ></div> */}
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          height: "380px",
+        }}
       >
-        <h2>Weekly Brand Ranking</h2>
+        <Line data={data} options={options} />
       </div>
-      <Line data={data} options={options} />
     </div>
   );
 };

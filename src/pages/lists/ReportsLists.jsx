@@ -1,7 +1,7 @@
 import { Box, Container } from "@mui/material";
 import CommonTitle from "../../component/common/CommonTitle";
 import CommonButton from "../../component/common/CommonButton";
-import ReportsGrid from "./ReportsGrid";
+import ReportsList from "../../component/list/ReportsList";
 
 const Reports = () => {
   return (
@@ -21,7 +21,7 @@ const Reports = () => {
               보고서 이름 검색
             </CommonButton>
           </Box>
-          <ReportsGrid />
+          <ReportsList />
         </Container>
       </Container>
     </>

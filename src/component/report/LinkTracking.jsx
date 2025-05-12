@@ -1,5 +1,6 @@
 import { Paper, Box, Typography } from "@mui/material";
 import CommonButton from "../common/CommonButton";
+import CommonSubtitle from "../common/CommonSubtitle";
 
 const LinkTracking = () => {
   return (
@@ -14,9 +15,7 @@ const LinkTracking = () => {
           alignItems: "center",
         }}
       >
-        <Typography variant="subtitle2" color="secondary">
-          Link Tracking
-        </Typography>
+        <CommonSubtitle>Link Tracking</CommonSubtitle>
         <CommonButton
           size="small"
           color="fourth"
@@ -40,10 +39,10 @@ const LinkTracking = () => {
             sx={{ display: "flex", justifyContent: "space-between", py: 0.8 }}
           >
             <Typography variant="body2" sx={{ fontSize: "0.8rem" }}>
-              {idx + 1}위 인터넷 언급량 순위
+              {idx + 1} 링크 타이틀
             </Typography>
             <Typography variant="body2" sx={{ fontSize: "0.8rem" }}>
-              점유 비율(%)
+              도메인
             </Typography>
           </Box>
         ))}

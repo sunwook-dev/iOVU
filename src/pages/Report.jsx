@@ -103,6 +103,10 @@ const Report = () => {
               <BrandRanking />
             </Box>
             <Box>
+              <MentionTracking />
+            </Box>
+
+            <Box>
               <LinkTracking />
             </Box>
           </Box>
@@ -118,9 +122,6 @@ const Report = () => {
           >
             <Box>
               <Snapshot />
-            </Box>
-            <Box>
-              <MentionTracking />
             </Box>
             <Box>
               <ResultSummary />

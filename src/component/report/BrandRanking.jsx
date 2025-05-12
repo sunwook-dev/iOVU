@@ -8,11 +8,19 @@ import {
   BarElement,
   Title,
   Tooltip,
-  Legend
+  Legend,
 } from "chart.js";
+import CommonSubtitle from "../common/CommonSubtitle";
 
 //차트에 필요한 요소 등록
-ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
 const BrandRanking = () => {
   // 1. 원본 데이터 (정렬 전)
@@ -35,7 +43,7 @@ const BrandRanking = () => {
         label: "",
         data: sorted.map((item) => item.value),
         backgroundColor: sorted.map((item) => item.color),
-        barThickness: 20,        
+        barThickness: 20,
         borderSkipped: false,
       },
     ],
@@ -45,20 +53,25 @@ const BrandRanking = () => {
     responsive: true,
     plugins: {
       legend: {
-        display: false,   
+        display: false,
       },
-    },    
-  }
-  
+    },
+  };
+
   return (
-    <Paper elevation={1} sx={{ p: 2, height: "180px", bgcolor: "#f5f5f5" }}>
-      <Typography variant="subtitle2" color="secondary">
-        Brand Ranking
-      </Typography>
-      <Box id="brand_r" sx={{ height: "130px", mt: 1 }}>
+    <Paper elevation={1} sx={{ p: 2, minHeight: "240px", bgcolor: "#f5f5f5" }}>
+      <CommonSubtitle>Brand Ranking</CommonSubtitle>
+      <Box id="brand_r" sx={{ height: "200px", mt: 2 }}>
         {/* 막대 그래프 자리 */}
-        <Box sx={{ display: "flex", height: "100%", alignItems: "flex-end" }}>
-          <Bar data={data} options={options}  style={{ width: "300px" }}/>
+        <Box
+          sx={{
+            display: "flex",
+            height: "100%",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <Bar data={data} options={options} style={{ width: "100%" }} />
         </Box>
       </Box>
     </Paper>

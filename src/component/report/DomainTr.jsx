@@ -1,16 +1,17 @@
 import { Paper, Box, Typography } from "@mui/material";
+import CommonSubtitle from "../common/CommonSubtitle";
+import WeeklyLinkChart from "../charts/WeeklyLinkChart";
 
 const DomainTr = () => {
   return (
     <Paper
       elevation={1}
-      sx={{ p: 2, minWidth: "468px", height: "120px", bgcolor: "#f5f5f5" }}
+      sx={{ p: 2, minWidth: "468px", minHeight: "500px", bgcolor: "#f5f5f5" }}
     >
-      <Typography variant="subtitle2" color="secondary">
-        주간 도메인 점유율 트렌드
-      </Typography>
+      <CommonSubtitle>주간 도메인 점유율 트렌드</CommonSubtitle>
       <Box sx={{ height: "70px", mt: 2 }}>
-        선 그래프
+        {/* 선 그래프 */}
+        <WeeklyLinkChart />
         {/* <svg
           width="100%"
           height="100%"

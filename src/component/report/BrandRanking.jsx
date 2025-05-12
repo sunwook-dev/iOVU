@@ -58,7 +58,7 @@ const BrandRanking = () => {
       <Box id="brand_r" sx={{ height: "130px", mt: 1 }}>
         {/* 막대 그래프 자리 */}
         <Box sx={{ display: "flex", height: "100%", alignItems: "flex-end" }}>
-          <Bar data={data} options={options}  style={{ width: "100%" }}/>
+          <Bar data={data} options={options}  style={{ width: "300px" }}/>
         </Box>
       </Box>
     </Paper>

@@ -18,6 +18,7 @@ const Footer = () => {
       <Box
         sx={{
           backgroundColor: "#EAE3D8",
+          mt: 6,
           //   opacity: 0.2,
         }}
       >
@@ -102,7 +103,6 @@ const Footer = () => {
             </Box>
           </Box>
 
-          {/* sns링크 */}
           {/* 전화번호 SNS */}
           <Box
             sx={{

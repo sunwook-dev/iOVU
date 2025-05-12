@@ -11,6 +11,7 @@ const MentionTracking = () => {
       </Typography>
       <Box sx={{ height: "130px", mt: 1 }}>
         히트맵 자리
+        {/* <ApexChart /> */}
         {/* <Grid container sx={{ height: "100%" }}>
           {Array.from({ length: 30 }).map((_, idx) => (
             <Grid item xs={2} key={idx}>

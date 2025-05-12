@@ -1,4 +1,4 @@
-import { Container, Grid, Box } from "@mui/material";
+import { Container, Box } from "@mui/material";
 import EstimatedVolume from "../component/report/EstimatedVolume";
 import Snapshot from "../component/report/Snapshot";
 import BrandRanking from "../component/report/BrandRanking";
@@ -18,80 +18,74 @@ const Report = () => {
       sx={{ width: "1000px", height: "100%" }}
     >
       <CommonTitle>${}보고서</CommonTitle>
-      <Box
-        sx={{
-          display: "grid",
-          gridTemplateColumns: "repeat(2, 1fr)",
-          gridGap: "16px",
-          width: "1000px",
-        }}
-      >
-        {/* <Grid container spacing={2}> */}
-        {/* 첫 번째 행 */}
-        <Box
-          // item xs={12} md={6}
 
-          sx={{ height: "auto" }}
-        >
-          <EstimatedVolume />
-        </Box>
-        <Box
-        // item xs={12} md={6}
-        >
-          <Snapshot />
-        </Box>
+      {/* 2열 그리드 레이아웃 컨테이너 */}
+      <Box sx={{ width: "1000px" }}>
+        {/* 두 개의 열 컨테이너를 Flex로 구성 */}
+        <Box sx={{ display: "flex", gap: "16px" }}>
+          {/* 왼쪽 열 */}
+          <Box
+            sx={{
+              flex: 1,
+              display: "flex",
+              flexDirection: "column",
+              gap: "16px",
+            }}
+          >
+            <Box>
+              <EstimatedVolume />
+            </Box>
+            <Box>
+              <BrandRanking />
+            </Box>
+            <Box>
+              <LinkTracking />
+            </Box>
+          </Box>
 
-        {/* 두 번째 행 */}
-        <Box
-        // item xs={12} md={6}
-        >
-          <BrandRanking />
-        </Box>
-        <Box
-        // item xs={12} md={6}
-        >
-          <MentionTracking />
-        </Box>
-
-        {/* 세 번째 행 */}
-        <Box
-        // item xs={12} md={6}
-        >
-          <LinkTracking />
-        </Box>
-        <Box
-        // item xs={12} md={6}
-        >
-          <ResultSummary />
-        </Box>
-
-        {/* 네 번째 행 */}
-        <Box
-          // item xs={12}
-          gridColumn="span2"
-        >
-          <BrandTracking />
+          {/* 오른쪽 열 */}
+          <Box
+            sx={{
+              flex: 1,
+              display: "flex",
+              flexDirection: "column",
+              gap: "16px",
+            }}
+          >
+            <Box>
+              <Snapshot />
+            </Box>
+            <Box>
+              <MentionTracking />
+            </Box>
+            <Box>
+              <ResultSummary />
+            </Box>
+          </Box>
         </Box>
 
-        {/* 다섯 번째 행 */}
+        {/* 전체 너비를 차지하는 컴포넌트들 */}
         <Box
-          // item xs={12}
-          gridColumn="span2"
+          sx={{
+            marginTop: "16px",
+            display: "flex",
+            flexDirection: "column",
+            gap: "16px",
+          }}
         >
-          <DomainTr />
+          <Box>
+            <BrandTracking />
+          </Box>
+          <Box>
+            <DomainTr />
+          </Box>
+          <Box>
+            <Analysis />
+          </Box>
         </Box>
-
-        {/* 여섯 번째 행 */}
-        <Box
-          // item xs={12}
-          gridColumn="span2"
-          sx={{ height: "auto" }}
-        >
-          <Analysis />
-        </Box>
-        {/* </Grid> */}
       </Box>
     </Container>
   );
 };
+
 export default Report;

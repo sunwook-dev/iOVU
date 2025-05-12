@@ -10,10 +10,6 @@ function App() {
     <div className="App" style={{}}>
       <Layout>
         <Router />
-        {/* <CommonTitle color="third">제목입니다</CommonTitle>
-        <Container sx={{ width: "1000px", display: "flex" }}>
-          <Button> 되나요?되나요?</Button>
-        </Container> */}
       </Layout>
     </div>
   );

@@ -60,7 +60,6 @@ const DashBoard = () => {
           <BrandColumn brandName="Cloud" stats={stats3} />
         </div>
       </Box>
-      <BrandTracking />
     </Container>
   );
 };

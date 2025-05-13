@@ -161,12 +161,6 @@ const ReportLinkDomainPage = () => {
           </TableBody>
         </Table>
       </TableContainer>
-
-      <Box sx={{ mt: 3, display: "flex", justifyContent: "flex-end" }}>
-        <Button variant="outlined" onClick={handleLogout}>
-          로그아웃
-        </Button>
-      </Box>
     </Container>
   );
 };

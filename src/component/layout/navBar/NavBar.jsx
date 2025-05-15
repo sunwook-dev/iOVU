@@ -25,6 +25,7 @@ import { FiMenu } from "react-icons/fi";
 const NavBar = () => {
   const location = useLocation(); // 현재 경로 가져오기
   const isLandingPage = location.pathname === "/landing"; // LandingPage 여부 확인
+  const navigate = useNavigate();
 
   // 드로어 상태 관리
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -79,7 +80,19 @@ const NavBar = () => {
       <List>
         {["SEARCH", "REPORT LIST"].map((text, index) => (
           <ListItem key={text} disablePadding>
-            <ListItemButton>
+            <ListItemButton
+              onClick={() => {
+                if (text === "SEARCH") {
+                  // 검색 페이지로 이동
+                  navigate("/search");
+                } else if (text === "REPORT LIST") {
+                  // 리포트 리스트 페이지로 이동
+                  navigate("/reports");
+                }
+              }}
+            >
+              {/* <ListItemIcon>
+                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
               {/* <ListItemIcon>
                 {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
               </ListItemIcon> */}

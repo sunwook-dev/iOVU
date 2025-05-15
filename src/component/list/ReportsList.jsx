@@ -10,42 +10,7 @@ import {
   DialogContent,
   DialogTitle,
 } from "@mui/material";
-
-const columns = [
-  { field: "prompt", headerName: "검색 프롬프트", width: 200 },
-  { field: "volume", headerName: "데이터 볼륨", width: 130 },
-  { field: "date", headerName: "날짜", width: 150 },
-  {
-    field: "actions",
-    headerName: "",
-    flex: 1,
-    renderCell: () => (
-      <Stack
-        direction="row"
-        spacing={1}
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          width: "100%",
-          height: "100%",
-        }}
-      >
-        <Button variant="contained" size="small">
-          보고서
-        </Button>
-        <Button variant="contained" size="small">
-          컨설팅
-        </Button>
-        <Button variant="contained" size="small">
-          대시보드
-        </Button>
-      </Stack>
-    ),
-    sortable: false,
-    filterable: false,
-  },
-];
+import { useNavigate, useParams } from "react-router-dom";
 
 const initialRows = [
   { id: 1, prompt: "뭐시키1", volume: 11, date: "2025.01.01" },
@@ -61,6 +26,63 @@ const ReportsGrid = () => {
   const [openDialog, setOpenDialog] = useState(false); // 삭제 확인 다이얼로그 상태
   const [rowsToDelete, setRowsToDelete] = useState([]); // 삭제할 항목을 임시로 저장
   const pageSize = 2; // 한 페이지에 표시할 행 수
+
+  const navigate = useNavigate();
+  const params = useParams();
+
+  const columns = [
+    { field: "prompt", headerName: "검색 프롬프트", width: 200 },
+    { field: "volume", headerName: "데이터 볼륨", width: 130 },
+    { field: "date", headerName: "날짜", width: 150 },
+    {
+      field: "actions",
+      headerName: "",
+      flex: 1,
+      renderCell: (params) => (
+        <Stack
+          direction="row"
+          spacing={1}
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            width: "100%",
+            height: "100%",
+          }}
+        >
+          <Button
+            variant="contained"
+            size="small"
+            onClick={() =>
+              navigate(`/report/${params.row.id}`, { state: params.row })
+            }
+          >
+            보고서
+          </Button>
+          <Button
+            variant="contained"
+            size="small"
+            // onClick={() => navigate(`/report/${params.row.id}/consulting`)}
+          >
+            컨설팅
+          </Button>
+          <Button
+            variant="contained"
+            size="small"
+            onClick={() =>
+              navigate(`/report/${params.row.id}/dashboard`, {
+                state: params.row,
+              })
+            }
+          >
+            대시보드
+          </Button>
+        </Stack>
+      ),
+      sortable: false,
+      filterable: false,
+    },
+  ];
 
   const handleDelete = () => {
     // if (selectionModel.length === 0) {

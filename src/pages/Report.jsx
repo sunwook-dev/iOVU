@@ -18,9 +18,17 @@ import Analysis from "../component/report/Analysis";
 import CommonTitle from "../component/common/CommonTitle";
 import CommonButton from "../component/common/CommonButton";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Report = () => {
   const [date, setDate] = useState("");
+  const navigate = useNavigate();
+  const clicktoConsulting = () => {
+    navigate("/report/consulting");
+  };
+  const clicktoExportreport = () => {
+    navigate("/");
+  };
   return (
     <Container
       disableGutters
@@ -84,7 +92,7 @@ const Report = () => {
       </Box>
 
       {/* 2열 그리드 레이아웃 컨테이너 */}
-      <Box sx={{ width: "1000px" }}>
+      <Box sx={{ width: "1000px", mb: 4 }}>
         {/* 두 개의 열 컨테이너를 Flex로 구성 */}
         <Box sx={{ display: "flex", gap: "16px" }}>
           {/* 왼쪽 열 */}
@@ -148,6 +156,14 @@ const Report = () => {
             <Analysis />
           </Box>
         </Box>
+      </Box>
+      <Box>
+        <CommonButton onClick={clicktoConsulting}>
+          AI 컨설팅 보러가기
+        </CommonButton>
+        <CommonButton onClick={clicktoExportreport}>
+          보고서 내보내기
+        </CommonButton>
       </Box>
     </Container>
   );

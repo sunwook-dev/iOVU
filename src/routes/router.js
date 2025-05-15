@@ -17,9 +17,9 @@ const Router = () => {
       <Route path="/report/link-domain" element={<ReportLinkDomainPage />} />
       <Route path="/search" element={<SearchPage />} />
       <Route path="/reports" element={<ReportsLists />} />
-      <Route path="/reports/1/dashboard" element={<DashBoard />} />
-      <Route path="/report" element={<Report />} />
-      <Route path="/report/consulting" element={<Consulting />} />
+      <Route path="/report/:id/dashboard" element={<DashBoard />} />
+      <Route path="/report/:id" element={<Report />} />
+      <Route path="/report/consulting" element={<Consulting />} />           
     </Routes>
   );
 };

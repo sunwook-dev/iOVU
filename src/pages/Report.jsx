@@ -18,24 +18,42 @@ import Analysis from "../component/report/Analysis";
 import CommonTitle from "../component/common/CommonTitle";
 import CommonButton from "../component/common/CommonButton";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+
+const initialRows = [
+  { id: 1, prompt: "뭐시키1", volume: 11, date: "2025.01.01" },
+  { id: 2, prompt: "뭐시키2", volume: 12, date: "2025.01.02" },
+  { id: 3, prompt: "뭐시키3", volume: 13, date: "2025.01.03" },
+  { id: 4, prompt: "뭐시키4", volume: 14, date: "2025.01.04" },
+];
+
+const initialItems = [
+  { id: 1, value: 6, date: "05-06" },
+  { id: 2, value: 13, date: "05-13" },
+  { id: 3, value: 20, date: "05-20" },
+];
 
 const Report = () => {
-  const [date, setDate] = useState("");
+  let lastValue = initialItems[initialItems.length - 1].value;
+  const [date, setDate] = useState(lastValue);
+  const { id } = useParams();
+  const [selectedModel, setSelectedModel] = useState("ChatGPT");
   const navigate = useNavigate();
+  
   const clicktoConsulting = () => {
     navigate("/report/consulting");
   };
   const clicktoExportreport = () => {
     navigate("/");
   };
+
   return (
     <Container
       disableGutters
       maxWidth={false}
       sx={{ width: "1000px", height: "100%" }}
     >
-      <CommonTitle>${}보고서</CommonTitle>
+      <CommonTitle>{initialRows[id - 1].prompt}보고서</CommonTitle>
       <Box
         sx={{
           mb: 4,
@@ -66,15 +84,18 @@ const Report = () => {
             <Select
               label="선택한 날짜"
               id="demo-simple-select"
-              value=""
+              value={date}
+              onChange={(e) => setDate(e.target.value)}
               sx={{
                 mx: 2,
                 minWidth: 140,
               }}
             >
-              <MenuItem value={6}>05-06</MenuItem>
-              <MenuItem value={13}>05-13</MenuItem>
-              <MenuItem value={20}>05-20</MenuItem>
+              {initialItems.map((item) => (
+                <MenuItem key={item.id} value={item.value}>
+                  {item.date}
+                </MenuItem>
+              ))}
             </Select>
           </FormControl>
         </Box>
@@ -86,8 +107,18 @@ const Report = () => {
             columnGap: 4,
           }}
         >
-          <CommonButton color="third">ChatGPT</CommonButton>
-          <CommonButton>Gemini</CommonButton>
+          <CommonButton
+            color={selectedModel === "ChatGPT" ? "third" : "primary"}
+            onClick={() => setSelectedModel("ChatGPT")}
+          >
+            ChatGPT
+          </CommonButton>
+          <CommonButton
+            color={selectedModel === "Gemini" ? "third" : "primary"}
+            onClick={() => setSelectedModel("Gemini")}
+          >
+            Gemini
+          </CommonButton>
         </Box>
       </Box>
 

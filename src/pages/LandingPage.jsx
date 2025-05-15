@@ -1,8 +1,6 @@
 import { Box, Container } from "@mui/material";
-
 import CommonButton from "../component/common/CommonButton";
 import CommonTitle from "../component/common/CommonTitle";
-import React from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 

@@ -24,13 +24,13 @@ import { FiMenu } from "react-icons/fi";
 
 const NavBar = () => {
   const location = useLocation(); // 현재 경로 가져오기
-  const navigator = useNavigate();
+  const navigate = useNavigate();
   const isLandingPage = location.pathname === "/landing"; // LandingPage 여부 확인
   const clickLogo = () => {
-    navigator("/search");
+    navigate("/search");
   };
   const clicktoLogout = () => {
-    navigator("/");
+    navigate("/");
   };
 
   // 드로어 상태 관리

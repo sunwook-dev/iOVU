@@ -39,9 +39,9 @@ const Report = () => {
   const { id } = useParams();
   const [selectedModel, setSelectedModel] = useState("ChatGPT");
   const navigate = useNavigate();
-  
+
   const clicktoConsulting = () => {
-    navigate("/report/consulting");
+    navigate(`/report/${id}/consulting`);
   };
   const clicktoExportreport = () => {
     navigate("/");

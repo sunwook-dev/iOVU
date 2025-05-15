@@ -95,7 +95,7 @@ const ReportLinkDomainPage = () => {
           mb: 2,
         }}
       >
-        <CommonTitle sx={{ py: 0, px: 0 }}>링크 및 도메인 분석</CommonTitle>
+        <CommonTitle sx={{ py: 0, px: 0 }}> 도메인 및 링크분석</CommonTitle>
         <Box>
           <Button variant="contained" onClick={handleDownloadLinks}>
             링크 다운로드

@@ -1,8 +1,14 @@
 import { Paper, Box, Typography } from "@mui/material";
 import CommonButton from "../common/CommonButton";
 import CommonSubtitle from "../common/CommonSubtitle";
+import { useNavigate } from "react-router-dom";
 
 const LinkTracking = () => {
+  const navigator = useNavigate();
+  const clickLinkDetail = () => {
+    navigator("/report/link-domain");
+  };
+
   return (
     <Paper
       elevation={1}
@@ -17,6 +23,7 @@ const LinkTracking = () => {
       >
         <CommonSubtitle>Link Tracking</CommonSubtitle>
         <CommonButton
+          onClick={clickLinkDetail}
           size="small"
           color="fourth"
           sx={{

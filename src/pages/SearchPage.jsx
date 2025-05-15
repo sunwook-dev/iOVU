@@ -1,16 +1,16 @@
-import {Box, Container, InputAdornment, TextField} from "@mui/material";
-
+import {Box, Container, IconButton, InputAdornment, TextField} from "@mui/material";
 import CommonButton from "../component/common/CommonButton";
 import CommonTitle from "../component/common/CommonTitle";
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 
 const SearchPage = () => {
+
    const navigate = useNavigate();
-   
     const handleSearch = () => {
-      console.log("검색 실행");
+      navigate("/reports");
     };
+
   return (
     <Container
       sx={{
@@ -66,7 +66,7 @@ const SearchPage = () => {
             },
             endAdornment: (
               <InputAdornment position="end">
-                <CommonButton
+                <IconButton
                   onClick={handleSearch}
                   sx={{
                     backgroundColor: "transparent",
@@ -89,7 +89,7 @@ const SearchPage = () => {
                       transition: "all 0.3s ease",
                     }}
                   />
-                </CommonButton>
+                </IconButton>
               </InputAdornment>
             ),
           }}
@@ -99,6 +99,3 @@ const SearchPage = () => {
   );
 };
 export default SearchPage;
-
-
-

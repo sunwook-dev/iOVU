@@ -1,9 +1,13 @@
-import React from "react";
+import { useLocation } from "react-router-dom";
 import NavBar from "./navBar/NavBar";
 import Footer from "./footer/Footer";
 import { Box } from "@mui/material";
 
 const Layout = ({ children }) => {
+  const location = useLocation();
+  const path = location.pathname;
+
+  const hideNavBar = path === "/login" || path === "/";
   return (
     <Box
       sx={{
@@ -12,7 +16,7 @@ const Layout = ({ children }) => {
         minHeight: "100vh",
       }}
     >
-      <NavBar />
+      {!hideNavBar && <NavBar />}
       <Box
         sx={{
           flexGrow: 1,

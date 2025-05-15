@@ -7,6 +7,7 @@ import SearchPage from "../pages/SearchPage";
 import Report from "../pages/Report";
 import ReportsLists from "../pages/lists/ReportsLists";
 import DashBoard from "../pages/dashBoard/DashBoard";
+import Consulting from "../pages/Consulting";
 
 const Router = () => {
   return (
@@ -18,6 +19,7 @@ const Router = () => {
       <Route path="/reports" element={<ReportsLists />} />
       <Route path="/report/:id/dashboard" element={<DashBoard />} />
       <Route path="/report/:id" element={<Report />} />
+      <Route path="/report/consulting" element={<Consulting />} />           
     </Routes>
   );
 };

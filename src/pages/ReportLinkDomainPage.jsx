@@ -1,5 +1,5 @@
 // src/pages/ReportLinkDomainPage/ReportLinkDomainPage.jsx
-import React from "react";
+
 import CommonTitle from "../component/common/CommonTitle";
 import {
   Container,

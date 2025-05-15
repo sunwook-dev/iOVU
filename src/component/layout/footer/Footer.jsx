@@ -1,17 +1,27 @@
 import React from "react";
-import { Box, Typography, Container } from "@mui/material";
-// import { useNavigate } from "react-router-dom";
+import { Box, Typography, Container, IconButton } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 import { IoLogoGithub } from "react-icons/io";
 import { IoLogoYoutube } from "react-icons/io";
 import { IoLogoInstagram } from "react-icons/io";
 import { useTheme } from "@mui/material/styles";
+import { click } from "@testing-library/user-event/dist/cjs/setup/directApi.js";
 
 const Footer = () => {
   const theme = useTheme();
-  //   const navigate = useNavigate();
-  //   const clickLogo = () => {
-  //     navigate("/");
-  //   };
+  const navigate = useNavigate();
+  const clickLogo = () => {
+    navigate("/");
+  };
+  const clickGithub = () => {
+    window.open("https://github.com/sunwook-dev/iOVU-FRONT", "_blank");
+  };
+  const clickYoutube = () => {
+    window.open("https://www.youtube.com/", "_blank");
+  };
+  const clickInsta = () => {
+    window.open("https://www.instagram.com/", "_blank");
+  };
 
   return (
     <>
@@ -34,7 +44,7 @@ const Footer = () => {
           }}
         >
           {/* 로고, 시간 */}
-          <Box sx={{ display: "flex", cursor: "pointer" }}>
+          <Box onClick={clickLogo} sx={{ display: "flex", cursor: "pointer" }}>
             <Typography>iOVU</Typography>
           </Box>
           <Box>
@@ -116,12 +126,26 @@ const Footer = () => {
               sx={{
                 display: "flex",
                 justifyContent: "center",
-                columnGap: 1,
               }}
             >
-              <IoLogoGithub fontSize="20px" />
-              <IoLogoYoutube fontSize="20px" />
-              <IoLogoInstagram fontSize="20px" />
+              <IconButton>
+                <IoLogoGithub
+                  onClick={clickGithub}
+                  fontSize="20px"
+                  sx={{
+                    "&:hover": {
+                      cursor: "pointer",
+                    },
+                  }}
+                />
+              </IconButton>
+              <IconButton>
+                <IoLogoYoutube onClick={clickYoutube} fontSize="20px" />
+              </IconButton>
+              <IconButton>
+                <IoLogoInstagram onClick={clickInsta} fontSize="20px" />
+              </IconButton>
+
               {/* <YouTubeIcon fontSize="medium" />
             <InstagramIcon fontSize="medium" /> */}
             </Box>

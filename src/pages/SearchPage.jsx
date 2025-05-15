@@ -1,4 +1,4 @@
-import {Box, Container, InputAdornment, TextField} from "@mui/material";
+import { Box, Container, InputAdornment, TextField } from "@mui/material";
 
 import CommonButton from "../component/common/CommonButton";
 import CommonTitle from "../component/common/CommonTitle";
@@ -6,11 +6,11 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 const SearchPage = () => {
-   const navigate = useNavigate();
-   
-    const handleSearch = () => {
-      console.log("검색 실행");
-    };
+  const navigate = useNavigate();
+
+  const handleSearch = () => {
+    console.log("검색 실행");
+  };
   return (
     <Container
       sx={{
@@ -99,6 +99,3 @@ const SearchPage = () => {
   );
 };
 export default SearchPage;
-
-
-

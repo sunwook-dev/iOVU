@@ -24,7 +24,14 @@ import { FiMenu } from "react-icons/fi";
 
 const NavBar = () => {
   const location = useLocation(); // 현재 경로 가져오기
+  const navigator = useNavigate();
   const isLandingPage = location.pathname === "/landing"; // LandingPage 여부 확인
+  const clickLogo = () => {
+    navigator("/search");
+  };
+  const clicktoLogout = () => {
+    navigator("/");
+  };
 
   // 드로어 상태 관리
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -97,23 +104,40 @@ const NavBar = () => {
         position="static"
         sx={{ minHeight: 80, justifyContent: "center", mb: 6 }}
       >
-        <Toolbar>
-          {!isLandingPage && (
-            <IconButton
-              size="large"
-              edge="start"
-              color="inherit"
-              aria-label="menu"
-              sx={{ mr: 2 }}
-              onClick={toggleDrawer(true)} // 메뉴 아이콘 클릭시 드로어 열기
-            >
-              <FiMenu />
-            </IconButton>
-          )}
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            iOVU
-          </Typography>
-          <Button color="inherit">Login</Button>
+        <Toolbar sx={{ display: "grid", gridTemplateColumns: "1fr auto 1fr" }}>
+          <Box sx={{ justifySelf: "start" }}>
+            {!isLandingPage && (
+              <IconButton
+                size="large"
+                edge="start"
+                color="inherit"
+                aria-label="menu"
+                sx={{ mr: 2 }}
+                onClick={toggleDrawer(true)} // 메뉴 아이콘 클릭시 드로어 열기
+              >
+                <FiMenu />
+              </IconButton>
+            )}
+          </Box>
+
+          <Box
+            onClick={clickLogo}
+            sx={{
+              justifySelf: "center",
+              "&:hover": {
+                cursor: "pointer",
+              },
+            }}
+          >
+            <Typography variant="h6" component="div">
+              iOVU
+            </Typography>
+          </Box>
+          <Box sx={{ justifySelf: "end" }}>
+            <Button onClick={clicktoLogout} color="inherit">
+              Logout
+            </Button>
+          </Box>
         </Toolbar>
       </AppBar>
 

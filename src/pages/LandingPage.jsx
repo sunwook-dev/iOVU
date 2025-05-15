@@ -1,4 +1,4 @@
-import {Box, Container} from "@mui/material";
+import { Box, Container } from "@mui/material";
 
 import CommonButton from "../component/common/CommonButton";
 import CommonTitle from "../component/common/CommonTitle";

@@ -13,6 +13,7 @@ const Login = () => {
   return (
     <Container
       sx={{
+        mt: 10,
         width: "1000px",
         display: "flex",
         flexDirection: "column",
@@ -29,7 +30,7 @@ const Login = () => {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          my: 12,
+          my: 16,
           mx: "auto",
           columnGap: 4,
         }}

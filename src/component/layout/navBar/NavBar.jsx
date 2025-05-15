@@ -27,8 +27,6 @@ const NavBar = () => {
   const navigate = useNavigate();
   const isLandingPage = location.pathname === "/landing"; // LandingPage 여부 확인
 
-  const navigate = useNavigate();
-  
   const clickLogo = () => {
     navigate("/search");
   };

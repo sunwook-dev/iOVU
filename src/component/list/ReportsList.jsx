@@ -62,7 +62,7 @@ const ReportsGrid = () => {
           <Button
             variant="contained"
             size="small"
-            // onClick={() => navigate(`/report/${params.row.id}/consulting`)}
+            onClick={() => navigate(`/report/${params.row.id}/consulting`)}
           >
             컨설팅
           </Button>

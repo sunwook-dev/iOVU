@@ -1,8 +1,9 @@
 import {Box, Container, IconButton, InputAdornment, TextField} from "@mui/material";
 import CommonButton from "../component/common/CommonButton";
 import CommonTitle from "../component/common/CommonTitle";
-import React from "react";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import axios from "axios";
 
 const SearchPage = () => {
 
@@ -34,10 +35,9 @@ const SearchPage = () => {
         }}
       >
         <img
-          src="/image/searchBanner2.png"
-          alt="검색 배너"
+          src="/image/searchBanner2.png"          
           style={{
-            width: 500,
+            width: 600,
             height: 400,
             marginBottom: 0,
             marginTop: 0,
@@ -48,7 +48,7 @@ const SearchPage = () => {
           placeholder="키워드 검색"
           variant="outlined"
           size="medium"
-          sx={{ width: 600, position: "absolute", top: "350px" }}
+          sx={{ width: 600, position: "absolute", top: "400px" }}
           onKeyDown={(e) => {
             if (e.key === "Enter") {
               handleSearch();

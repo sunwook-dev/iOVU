@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import {
   Button,
@@ -10,25 +10,55 @@ import {
   DialogContent,
   DialogTitle,
 } from "@mui/material";
-import { useNavigate, useParams } from "react-router-dom";
-
-const initialRows = [
-  { id: 1, prompt: "뭐시키1", volume: 11, date: "2025.01.01" },
-  { id: 2, prompt: "뭐시키2", volume: 12, date: "2025.01.02" },
-  { id: 3, prompt: "뭐시키3", volume: 13, date: "2025.01.03" },
-  { id: 4, prompt: "뭐시키4", volume: 14, date: "2025.01.04" },
-];
+import { useLocation, useNavigate, useParams } from "react-router-dom";
+import axios from "axios";
 
 const ReportsGrid = () => {
-  const [rows, setRows] = useState(initialRows);
   const [page, setPage] = useState(1);
   const [selectionModel, setSelectionModel] = useState([]);
+  const [selectionModels, setSelectionModels] = useState([]);
   const [openDialog, setOpenDialog] = useState(false); // 삭제 확인 다이얼로그 상태
   const [rowsToDelete, setRowsToDelete] = useState([]); // 삭제할 항목을 임시로 저장
+  const [rows, setRows] = useState([]);
+  const [loading, setLoading] = useState(true); // 데이터 로딩 상태
+  const [error, setError] = useState(null); // 에러 상태
+
   const pageSize = 2; // 한 페이지에 표시할 행 수
 
   const navigate = useNavigate();
   const params = useParams();
+  const location = useLocation();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      setError(null);
+      try {
+        const res = await axios.get("http://localhost:8081/reports");
+        const mappedRows = mapBackendDataToRows(res.data);
+        setRows(mappedRows);
+      } catch (err) {
+        console.error("데이터 로딩 에러:", err);
+        setError("데이터를 불러오는 중 오류가 발생했습니다.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [location.pathname]);
+
+  const mapBackendDataToRows = (backendData) => {
+    return backendData.map((item) => ({
+      id: item.report_id,
+      prompt: item.keyword,
+      volume: item.data_volume,
+      date: new Date(item.created_at)
+        .toISOString()
+        .slice(0, 10)
+        .replace(/-/g, "."),
+    }));
+  };
 
   const columns = [
     { field: "prompt", headerName: "검색 프롬프트", width: 200 },
@@ -85,26 +115,43 @@ const ReportsGrid = () => {
   ];
 
   const handleDelete = () => {
-    // if (selectionModel.length === 0) {
-    //   alert("삭제할 항목을 선택하세요.");
-    //   return;
-    // }
-    const rowsToDeleteList = rows.filter((row) =>
-      selectionModel.includes(row.id)
-    );
+    if (selectionModel.length === 0) {
+      alert("삭제할 항목을 선택하세요.");
+      return;
+    }
+    const rowsToDeleteList = rows.filter((row) => {
+      console.log("삭제할 항목:", row.id);
+      return selectionModel.ids.has(row.id);
+    });
+    console.log("삭제할 항목:", rowsToDeleteList); // 삭제할 항목 로그
     setRowsToDelete(rowsToDeleteList);
     setOpenDialog(true); // 삭제 확인 다이얼로그 열기
   };
 
-  const handleConfirmDelete = () => {
-    // 선택된 항목들 삭제
-    setRows((prevRows) =>
-      prevRows.filter((row) => !selectionModel.includes(row.id))
-    );
-    setSelectionModel([]); // 삭제 후 선택된 항목 초기화
-    setRowsToDelete([]); // 삭제할 항목 리스트 초기화
-    setOpenDialog(false); // 다이얼로그 닫기
-    setPage(1); // 삭제 후 페이지 리셋
+  const handleConfirmDelete = async () => {
+    try {
+      const idsToDelete = Array.from(selectionModel.ids); // Set을 배열로 변환
+
+      await Promise.all(
+        idsToDelete.map(async (id) => {
+          console.log("삭제 시도 ID:", id);
+          await axios.delete(`http://localhost:8082/reports/${id}`);
+        })
+      );
+
+      // ✅ 성공적으로 삭제된 경우 state에서 제거
+      setRows(
+        (prevRows) => prevRows.filter((row) => !selectionModel.ids.has(row.id)) // Set의 has() 사용
+      );
+      setSelectionModel({ type: "include", ids: new Set() }); // 선택 초기화 (Set으로)
+      setRowsToDelete([]); // 삭제 목록 초기화
+      setOpenDialog(false); // 다이얼로그 닫기
+      setPage(1); // 첫 페이지로 리셋
+      alert("선택된 항목이 삭제되었습니다."); // 사용자에게 알림
+    } catch (error) {
+      console.error("삭제 실패:", error); // ✅ 에러 핸들링
+      alert("삭제 중 문제가 발생했습니다. 다시 시도해주세요.");
+    }
   };
 
   const handleCancelDelete = () => {
@@ -114,6 +161,14 @@ const ReportsGrid = () => {
   const handlePageChange = (event, value) => {
     setPage(value);
   };
+
+  if (loading) {
+    return <div>데이터를 불러오는 중...</div>;
+  }
+
+  if (error) {
+    return <div>에러 발생: {error}</div>;
+  }
 
   return (
     <div
@@ -128,10 +183,11 @@ const ReportsGrid = () => {
         hideFooter
         checkboxSelection
         disableRowSelectionOnClick
-        onSelectionModelChange={(newSelection) =>
-          setSelectionModel(newSelection.selectionModel)
-        }
         selectionModel={selectionModel} // 선택된 행을 관리
+        onRowSelectionModelChange={(newSelection) => {
+          console.log("현재 변경된 선택:", newSelection); // 현재 변경된 선택 로그
+          setSelectionModel(newSelection);
+        }}
         sx={{
           borderRadius: "10px",
           backgroundColor: "#f0f0f0",
@@ -166,6 +222,21 @@ const ReportsGrid = () => {
           <Typography>
             선택한 항목을 삭제하시겠습니까? 삭제된 항목은 복구할 수 없습니다.
           </Typography>
+          {rowsToDelete.length > 0 && (
+            <div>
+              <Typography variant="subtitle2" style={{ marginTop: 10 }}>
+                삭제될 항목:
+              </Typography>
+              <ul>
+                {rowsToDelete.map((deletedRow) => (
+                  <li key={deletedRow.id}>
+                    {deletedRow.prompt} - {deletedRow.volume} -{" "}
+                    {deletedRow.date}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </DialogContent>
         <DialogActions>
           <Button onClick={handleCancelDelete} color="primary">
@@ -176,20 +247,6 @@ const ReportsGrid = () => {
           </Button>
         </DialogActions>
       </Dialog>
-
-      {/* 삭제된 항목이 있을 경우 표시 */}
-      {rowsToDelete.length > 0 && (
-        <div style={{ marginTop: 20 }}>
-          <Typography variant="h6">삭제된 항목</Typography>
-          <ul>
-            {rowsToDelete.map((deletedRow) => (
-              <li key={deletedRow.id}>
-                {deletedRow.prompt} - {deletedRow.volume} - {deletedRow.date}
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
     </div>
   );
 };

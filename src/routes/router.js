@@ -14,12 +14,15 @@ const Router = () => {
     <Routes>
       <Route path="/" element={<LandingPage />} />
       <Route path="/login" element={<Login />} />
-      <Route path="/report/link-domain" element={<ReportLinkDomainPage />} />
+      <Route
+        path="/report/link-domain/:id"
+        element={<ReportLinkDomainPage />}
+      />
       <Route path="/search" element={<SearchPage />} />
       <Route path="/reports" element={<ReportsLists />} />
       <Route path="/report/:id/dashboard" element={<DashBoard />} />
       <Route path="/report/:id" element={<Report />} />
-      <Route path="/report/consulting" element={<Consulting />} />           
+      <Route path="/report/:id/consulting" element={<Consulting />} />
     </Routes>
   );
 };

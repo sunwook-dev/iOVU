@@ -5,6 +5,9 @@ import {
   MenuItem,
   InputLabel,
   FormControl,
+  Snackbar,
+  Alert,
+  CircularProgress,
 } from "@mui/material";
 import EstimatedVolume from "../component/report/EstimatedVolume";
 import Snapshot from "../component/report/Snapshot";
@@ -17,8 +20,10 @@ import DomainTr from "../component/report/DomainTr";
 import Analysis from "../component/report/Analysis";
 import CommonTitle from "../component/common/CommonTitle";
 import CommonButton from "../component/common/CommonButton";
-import { useState } from "react";
+import { TbFileExport } from "react-icons/tb";
+import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import axios from "axios";
 
 const initialRows = [
   { id: 1, prompt: "뭐시키1", volume: 11, date: "2025.01.01" },
@@ -39,12 +44,104 @@ const Report = () => {
   const { id } = useParams();
   const [selectedModel, setSelectedModel] = useState("ChatGPT");
   const navigate = useNavigate();
-  
-  const clicktoConsulting = () => {
-    navigate("/report/consulting");
+
+  // 로딩 및 알림 상태 추가
+  const [loading, setLoading] = useState(false);
+  const [snackbar, setSnackbar] = useState({
+    open: false,
+    message: "",
+    severity: "info",
+  });
+
+  const reportId = parseInt(id, 10);
+
+  const isValidId =
+    !isNaN(reportId) && reportId > 0 && reportId <= initialRows.length;
+
+  const currentReport = isValidId ? initialRows[reportId - 1] : initialRows[0];
+
+  useEffect(() => {
+    if (id && !isValidId) {
+      navigate("/report/1");
+    }
+  }, [id, isValidId, navigate]);
+
+  // PDF 내보내기 함수
+  const exportReport = async () => {
+    if (!isValidId) {
+      setSnackbar({
+        open: true,
+        message: "유효한 보고서 ID가 필요합니다.",
+        severity: "error",
+      });
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      console.log(`보고서 내보내기 요청: /reports/${reportId}/export`);
+
+      const response = await axios.get(
+        `http://localhost:8081/reports/${reportId}/export`,
+        {
+          responseType: "blob", // 중요: 바이너리 데이터를 위한 responseType 설정
+        }
+      );
+
+      console.log("PDF 응답 받음:", response);
+      console.log("PDF 크기:", response.data.size, "바이트");
+
+      // Blob URL 생성 및 다운로드
+      const blob = new Blob([response.data], { type: "application/pdf" });
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `domain_report_${reportId}.pdf`;
+      document.body.appendChild(a);
+      a.click();
+
+      // 리소스 정리
+      window.URL.revokeObjectURL(url);
+      document.body.removeChild(a);
+
+      // 성공 메시지 표시
+      setSnackbar({
+        open: true,
+        message: "보고서가 성공적으로 내보내기 되었습니다.",
+        severity: "success",
+      });
+    } catch (error) {
+      console.error("보고서 내보내기 중 오류 발생:", error);
+
+      // 더 자세한 오류 정보 로깅
+      if (error.response) {
+        console.error("응답 상태:", error.response.status);
+        console.error("응답 헤더:", error.response.headers);
+      } else if (error.request) {
+        console.error("요청 정보:", error.request);
+      }
+
+      // 오류 메시지 표시
+      setSnackbar({
+        open: true,
+        message: `보고서 내보내기 중 오류가 발생했습니다: ${
+          error.message || "알 수 없는 오류"
+        }`,
+        severity: "error",
+      });
+    } finally {
+      setLoading(false);
+    }
   };
-  const clicktoExportreport = () => {
-    navigate("/");
+
+  // 알림 닫기 핸들러
+  const handleCloseSnackbar = () => {
+    setSnackbar((prev) => ({ ...prev, open: false }));
+  };
+
+  const clicktoConsulting = () => {
+    navigate("/report/${id}/consulting");
   };
 
   return (
@@ -53,7 +150,7 @@ const Report = () => {
       maxWidth={false}
       sx={{ width: "1000px", height: "100%" }}
     >
-      <CommonTitle>{initialRows[id - 1].prompt}보고서</CommonTitle>
+      <CommonTitle>{currentReport.prompt}보고서</CommonTitle>
       <Box
         sx={{
           mb: 4,
@@ -188,14 +285,49 @@ const Report = () => {
           </Box>
         </Box>
       </Box>
-      <Box>
-        <CommonButton onClick={clicktoConsulting}>
+      <Box
+        sx={{
+          display: "flex",
+          gap: 2,
+          justifyContent: "center",
+          width: "100%",
+          mt: 2,
+        }}
+      >
+        <CommonButton color="third" onClick={clicktoConsulting}>
           AI 컨설팅 보러가기
         </CommonButton>
-        <CommonButton onClick={clicktoExportreport}>
-          보고서 내보내기
+        <CommonButton
+          variant="outlined"
+          onClick={exportReport}
+          disabled={loading || !isValidId}
+        >
+          {loading ? (
+            <CircularProgress size={24} sx={{ color: "inherit" }} />
+          ) : (
+            <>
+              보고서 내보내기
+              <TbFileExport style={{ marginLeft: "8px" }} />
+            </>
+          )}
         </CommonButton>
       </Box>
+
+      {/* 알림 표시 */}
+      <Snackbar
+        open={snackbar.open}
+        autoHideDuration={6000}
+        onClose={handleCloseSnackbar}
+        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+      >
+        <Alert
+          onClose={handleCloseSnackbar}
+          severity={snackbar.severity}
+          sx={{ width: "100%" }}
+        >
+          {snackbar.message}
+        </Alert>
+      </Snackbar>
     </Container>
   );
 };

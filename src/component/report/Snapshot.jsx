@@ -12,7 +12,9 @@ const Snapshot = () => {
       }}
     >
       <CommonSubtitle>Snapshot</CommonSubtitle>
-      <Box></Box>
+      <Box>
+        <img src="../../../public/image/snapshot_sample.png" alt="snapshot" />
+      </Box>
     </Paper>
   );
 };

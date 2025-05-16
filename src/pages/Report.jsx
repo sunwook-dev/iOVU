@@ -138,6 +138,9 @@ const Report = () => {
   // 알림 닫기 핸들러
   const handleCloseSnackbar = () => {
     setSnackbar((prev) => ({ ...prev, open: false }));
+    
+  const clicktoConsulting = () => {
+    navigate(`/report/${id}/consulting`);
   };
 
   const clicktoConsulting = () => {

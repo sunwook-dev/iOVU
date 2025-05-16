@@ -6,7 +6,6 @@ import BrandTracking from "../BrandTracking";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-
 const DashBoard = ({ reportId }) => {
   const { id } = useParams();
   const [loading, setLoading] = useState(false);
@@ -72,7 +71,7 @@ const DashBoard = ({ reportId }) => {
   const stats1 = [
     { label: "요약 결과", value: "1" },
     { label: "브랜드 가시성", value: "10% (10)" },
-    { label: "브랜드 평균 순위", value: "#3" },
+    { label: "브랜드 평균 순위", value: "#4" },
     { label: "도메인 인용 비율", value: "10% (10)" },
     { label: "브랜드 언급 수", value: "23" },
   ];

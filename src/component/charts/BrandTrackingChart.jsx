@@ -24,16 +24,17 @@ ChartJS.register(
 const BrandTrackingChart = () => {
   const data = {
     labels: [
-      "2025-04-01",
       "2025-04-08",
-      // "2025-04-15",
-      // "2025-04-22",
-      // "2025-04-30",
+      "2025-04-15",
+      "2025-04-22",
+      "2025-04-30",
+      "2025-05-07",
+      "2025-05-14",
     ],
     datasets: [
       {
         label: "Levi's",
-        data: [2, 1, 1, 1, 1],
+        data: [2, 1, 1, 1, 1, 4],
         borderColor: "#e011c2",
         backgroundColor: "#e011c2",
         fill: false,
@@ -42,7 +43,7 @@ const BrandTrackingChart = () => {
       },
       {
         label: "Wrangler",
-        data: [1, 2, 2, 2, 2],
+        data: [1, 2, 2, 2, 2, 1],
         borderColor: "#3399ff",
         backgroundColor: "#3399ff",
         fill: false,
@@ -51,7 +52,7 @@ const BrandTrackingChart = () => {
       },
       {
         label: "3sixteen",
-        data: [3, 3, 3, 3, 3],
+        data: [3, 3, 3, 3, 3, 2],
         borderColor: "#cc4b2c",
         backgroundColor: "#cc4b2c",
         fill: false,
@@ -60,7 +61,7 @@ const BrandTrackingChart = () => {
       },
       {
         label: "Gap",
-        data: [6, 5, 4, 4, 3],
+        data: [6, 5, 4, 4, 3, 3],
         borderColor: "#70c9cc",
         backgroundColor: "#70c9cc",
         fill: false,
@@ -69,7 +70,7 @@ const BrandTrackingChart = () => {
       },
       {
         label: "Old Navy",
-        data: [4, 4, 5, 5, 4],
+        data: [4, 4, 5, 5, 4, 5],
         borderColor: "#f39237",
         backgroundColor: "#f39237",
         fill: false,

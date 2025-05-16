@@ -1,14 +1,14 @@
 import { Paper, Box, Typography } from "@mui/material";
 import CommonButton from "../common/CommonButton";
 import CommonSubtitle from "../common/CommonSubtitle";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const LinkTracking = () => {
   const navigator = useNavigate();
+  const { id } = useParams();
   const clickLinkDetail = () => {
-    navigator("/report/link-domain");
+    navigator(`/report/link-domain/${id}`);
   };
-
   return (
     <Paper
       elevation={1}

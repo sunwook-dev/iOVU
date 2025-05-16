@@ -7,8 +7,9 @@ import {
 } from "@mui/material";
 import CommonButton from "../component/common/CommonButton";
 import CommonTitle from "../component/common/CommonTitle";
-import React from "react";
+
 import { useNavigate } from "react-router-dom";
+import React, { useState } from "react";
 import axios from "axios";
 
 const SearchPage = () => {
@@ -114,10 +115,9 @@ const SearchPage = () => {
         }}
       >
         <img
-          src="/image/searchBanner2.png"
-          alt="검색 배너"
+          src="/image/searchBanner2.png"          
           style={{
-            width: 500,
+            width: 600,
             height: 400,
             marginBottom: 0,
             marginTop: 0,
@@ -131,6 +131,7 @@ const SearchPage = () => {
           value={keyword}
           onChange={(e) => setKeyword(e.target.value)}
           sx={{ width: 600, position: "absolute", top: "350px" }}
+
           onKeyDown={(e) => {
             if (e.key === "Enter") {
               handleSearch();

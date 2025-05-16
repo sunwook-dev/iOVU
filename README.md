@@ -1,70 +1,79 @@
-# Getting Started with Create React App
+## 📌 iOVU-FRONT
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+> iOVU-FRONT는 사용자 중심의 여행 일정 관리 서비스를 위한 프론트엔드 프로젝트입니다.  
+> React 기반의 SPA(Single Page Application) 구조로, 소셜 로그인, 지도 기반 장소 추천, 일정 생성 및 관리 기능을 제공합니다.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+### 🛠 기술 스택
 
-### `npm start`
+- **Frontend Framework**: React (Create React App)
+- **Styling**: CSS Modules / Styled-components (사용 시)
+- **Routing**: React Router
+- **API 통신**: Axios
+- **지도 API**: (카카오/네이버 지도 등 추후 명시)
+- **상태 관리**: (사용 시 Recoil / Redux 등 명시)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### 📁 프로젝트 구조
 
-### `npm test`
+```
+iOVU-FRONT/
+├── public/                # 정적 파일
+├── src/
+│   ├── assets/            # 이미지, 폰트 등
+│   ├── components/        # 공통 컴포넌트
+│   ├── pages/             # 각 페이지 단위 컴포넌트
+│   ├── services/          # API 통신 모듈
+│   ├── utils/             # 유틸리티 함수
+│   ├── App.js             # 루트 컴포넌트
+│   └── index.js           # 엔트리 포인트
+├── .gitignore
+├── package.json
+└── README.md
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+### 🚀 실행 방법
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+# 1. 프로젝트 클론
+git clone https://github.com/your-repo/iOVU-FRONT.git
+cd iOVU-FRONT
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+# 2. 의존성 설치
+npm install
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# 3. 개발 서버 실행
+npm start
+```
 
-### `npm run eject`
+개발 서버는 기본적으로 [http://localhost:3000](http://localhost:3000)에서 실행됩니다.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+---
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### 🔐 환경 변수 설정
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+`.env` 파일을 루트에 생성하고 필요한 키를 설정하세요.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```
+REACT_APP_API_BASE_URL=http://localhost:8080/api
+```
 
-## Learn More
+---
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### 📦 배포
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```bash
+npm run build
+```
 
-### Code Splitting
+빌드된 파일은 `build/` 디렉토리에 생성됩니다. 이 파일들을 웹 서버(Nginx 등)에 배포하여 서비스할 수 있습니다.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+---
 
-### Analyzing the Bundle Size
+### 📚 API 문서
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+API 명세는 [SwaggerHub 문서](https://app.swaggerhub.com/apis-docs/iouv/iOVU/3.0.0)를 참고하세요.
